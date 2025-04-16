@@ -37,7 +37,7 @@ export const createLinks: FastifyPluginAsyncZod = async server => {
             accessCount: 0,
             createdAt: new Date()})
         }
-      )
+    )
 }
 
 
