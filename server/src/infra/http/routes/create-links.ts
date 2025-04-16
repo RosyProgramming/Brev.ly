@@ -3,13 +3,15 @@ import { z } from 'zod'
 
 export const createLinks: FastifyPluginAsyncZod = async server => {
     server.post(
-        '/links',
+        '/link',
         {
           schema: {
             summary: 'Create Link',
             body: z.object({
                 originalUrl: z.string().url(),
-                shortUrl: z.string().min(5), 
+                shortUrl: z.string()
+                        .min(5, { message: 'Short URL must be at least 5 characters long' })
+                        .regex(/^[a-zA-Z0-9_-]+$/, { message: 'Invalid short URL format' }), 
             }),
             response: {
               
