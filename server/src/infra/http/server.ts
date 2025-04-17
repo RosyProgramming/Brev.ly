@@ -1,6 +1,7 @@
 import { env } from '@/env'
 import { fastify } from "fastify"
 import { fastifyCors } from "@fastify/cors"
+import { transformSwaggerSchema } from './transform-swagger-schema'
 
 import {
             serializerCompiler, 
@@ -39,7 +40,7 @@ server.register(fastifySwagger , {
             version: '1.0.0'
         },
     },
-    transform: jsonSchemaTransform,
+    transform: transformSwaggerSchema,
 })
 
 server.register(fastifySwaggerUi, {

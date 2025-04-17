@@ -1,0 +1,1 @@
+ALTER TABLE "links" ALTER COLUMN "short_url" SET DATA TYPE text;

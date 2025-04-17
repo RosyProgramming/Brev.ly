@@ -8,6 +8,13 @@
       "when": 1744769086319,
       "tag": "0000_early_yellow_claw",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1744861206975,
+      "tag": "0001_fat_shape",
+      "breakpoints": true
     }
   ]
 }

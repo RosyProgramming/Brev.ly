@@ -22,7 +22,7 @@ importers:
         version: 5.2.2
       drizzle-orm:
         specifier: ^0.42.0
-        version: 0.42.0(pg@8.14.1)
+        version: 0.42.0(pg@8.14.1)(postgres@3.4.5)
       fastify:
         specifier: ^5.3.0
         version: 5.3.0
@@ -32,6 +32,12 @@ importers:
       pg:
         specifier: ^8.14.1
         version: 8.14.1
+      postgres:
+        specifier: ^3.4.5
+        version: 3.4.5
+      uuidv7:
+        specifier: ^1.0.2
+        version: 1.0.2
       zod:
         specifier: ^3.24.2
         version: 3.24.2
@@ -1066,6 +1072,10 @@ packages:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
 
+  postgres@3.4.5:
+    resolution: {integrity: sha512-cDWgoah1Gez9rN3H4165peY9qfpEo+SA61oQv65O3cRUE1pOEoJWwddwcqKE8XZYjbblOJlYDlLV4h67HrEVDg==}
+    engines: {node: '>=12'}
+
   process-warning@4.0.1:
     resolution: {integrity: sha512-3c2LzQ3rY9d0hc1emcsHhfT9Jwz0cChib/QN89oME2R451w5fy3f0afAhERFZAwrbDU43wk12d0ORBpDVME50Q==}
 
@@ -1239,6 +1249,10 @@ packages:
 
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+
+  uuidv7@1.0.2:
+    resolution: {integrity: sha512-8JQkH4ooXnm1JCIhqTMbtmdnYEn6oKukBxHn1Ic9878jMkL7daTI7anTExfY18VRCX7tcdn5quzvCb6EWrR8PA==}
+    hasBin: true
 
   vite-node@3.1.1:
     resolution: {integrity: sha512-V+IxPAE2FvXpTCHXyNem0M+gWm6J7eRyWPR6vYoG/Gl+IscNOjXzztUhimQgTxaAoUoj40Qqimaa0NLIOOAH4w==}
@@ -1842,9 +1856,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.42.0(pg@8.14.1):
+  drizzle-orm@0.42.0(pg@8.14.1)(postgres@3.4.5):
     optionalDependencies:
       pg: 8.14.1
+      postgres: 3.4.5
 
   eastasianwidth@0.2.0: {}
 
@@ -2155,6 +2170,8 @@ snapshots:
     dependencies:
       xtend: 4.0.2
 
+  postgres@3.4.5: {}
+
   process-warning@4.0.1: {}
 
   process-warning@5.0.0: {}
@@ -2300,6 +2317,8 @@ snapshots:
   typescript@5.8.3: {}
 
   undici-types@6.21.0: {}
+
+  uuidv7@1.0.2: {}
 
   vite-node@3.1.1(@types/node@22.14.1)(tsx@4.19.3)(yaml@2.7.1):
     dependencies:
