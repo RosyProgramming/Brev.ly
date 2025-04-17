@@ -1,17 +1,14 @@
 import { generateLinksReport } from '@/app/functions/generate-links-report'
-import type { FastifyPluginAsync } from 'fastify'
+import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 
-export const generateReport: FastifyPluginAsync = async server => {
+export const generateReport: FastifyPluginAsyncZod = async server => {
   server.get(
     '/link/report',
     {
       schema: {
         summary: 'Export links in CSV',
         tags: ['links'],
-        querystring: z.object({
-          searchQuery: z.string().optional(),
-        }),
         response: {
           200: z.object({
             url: z.string(),
@@ -24,7 +21,6 @@ export const generateReport: FastifyPluginAsync = async server => {
 
       return reply.status(200).send({
         url: report.url,
-        message: 'Report generated successfully!',
       })
     }
   )
