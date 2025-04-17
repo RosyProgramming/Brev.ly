@@ -1,8 +1,10 @@
 import { db } from '@/infra/db'
 import { schema } from '@/infra/db/schemas'
+import { type Either, makeLeft, makeRight } from '@/infra/shared/either' 
 import { eq } from 'drizzle-orm'
 import { uuidv7 } from 'uuidv7'
 import { z } from 'zod'
+import { ShortURlAlreadyExists } from './errors/shortUrl-already-exists'
 
 // Schema de validação com zod
 export const createLinkInput = z.object({
@@ -14,30 +16,42 @@ export const createLinkInput = z.object({
 })
 
 // Tipo gerado automaticamente a partir do schema
-type CreateLinkInput = z.infer<typeof createLinkInput>
+type CreateLinkInput = z.input<typeof createLinkInput>
+
+type CreatedLink = {
+    id: string
+    originalUrl: string
+    shortUrl: string
+    accessCount: number
+    createdAt: Date
+}
 
 // Função de criação do link
-export async function createLink(data: CreateLinkInput) {
-  const validatedData = createLinkInput.parse(data)
+export async function createLink(input: CreateLinkInput): 
+    Promise<Either<ShortURlAlreadyExists, CreatedLink>
+> {
 
   // Verificar se já existe o shortUrl
   const existing = await db.query.links.findFirst({
-    where: eq(schema.links.shortUrl, validatedData.shortUrl),
+    where: eq(schema.links.shortUrl, input.shortUrl),
   })
 
   if (existing) {
-    throw new Error('Short URL already exists')
+    return makeLeft(new ShortURlAlreadyExists())
   }
 
   const id = uuidv7()
 
-  await db.insert(schema.links).values({
-    id,
-    originalUrl: validatedData.originalUrl,
-    shortUrl: validatedData.shortUrl,
-    accessCount: 0,
-    createdAt: new Date(),
+  const linkResponse = await db.insert(schema.links).values({
+        originalUrl: input.originalUrl,
+        shortUrl: input.shortUrl,
+  }).returning()
+  
+  return makeRight({
+    id: linkResponse[0].id,
+    originalUrl: linkResponse[0].originalUrl,
+    shortUrl: linkResponse[0].shortUrl,
+    accessCount: linkResponse[0].accessCount,
+    createdAt: linkResponse[0].createdAt,
   })
-
-  return { id }
 }
