@@ -43,6 +43,7 @@ export async function createLink(input: CreateLinkInput):
   const id = uuidv7()
 
   const linkResponse = await db.insert(schema.links).values({
+        id,
         originalUrl: input.originalUrl,
         shortUrl: input.shortUrl,
   }).returning()
