@@ -1,9 +1,17 @@
 import { db } from '@/infra/db'
 import { schema } from '@/infra/db/schemas'
+import { type Either, makeRight } from '@/infra/shared/either'
 import { exportToCSVAndUpload } from '@/infra/storage/export-csv-upload'
 import { asc } from 'drizzle-orm'
 
-export async function generateLinksReport() {
+type ExportLinksOutput = {
+  key: string
+  url: string
+}
+
+export async function generateLinksReport(): Promise<Either<never, ExportLinksOutput>> {
+
+  
   const links = await db
     .select()
     .from(schema.links)
@@ -32,5 +40,5 @@ export async function generateLinksReport() {
     rows,
   })
 
-  return report
+  return makeRight(report)
 }
