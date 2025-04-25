@@ -10,20 +10,27 @@ export const generateReport: FastifyPluginAsyncZod = async server => {
       schema: {
         summary: 'Export links in CSV',
         tags: ['links'],
+        querystring: z.object({
+          searchQuery: z.string().optional(),
+        }),
         response: {
           200: z.object({
-            url: z.string().describe("URL to download the report"),
+            reportUrl: z.string().describe("URL to download the report"),
           }),
           500: z.object({ message: z.string() }).describe("Internal server error")
         },
       },
     },
     async (request, reply) => {
-      const report = await generateLinksReport()
+      const { searchQuery } = request.query
 
-      const { url } = unwrapEither(report)
+      const result = await generateLinksReport({
+        searchQuery,
+      })
 
-      return reply.status(200).send({ url })
+      const { reportUrl } = unwrapEither(result)
+ 
+       return reply.status(200).send({ reportUrl })
 
     }
   )

@@ -1,5 +1,5 @@
-import { listLink, listLinkInput } from '@/app/functions/list-link'
-import { isRight, unwrapEither } from '@/infra/shared/either'
+import { listLink } from '@/app/functions/list-link'
+import { unwrapEither } from '@/infra/shared/either'
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 

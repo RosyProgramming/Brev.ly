@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto'
+import { basename, extname } from 'node:path'
 import { Readable } from 'node:stream'
 import { env } from '@/env'
 import { Upload } from '@aws-sdk/lib-storage'
@@ -6,50 +7,35 @@ import { z } from 'zod'
 import { r2 } from './client'
 
 const exportCSVParamsSchema = z.object({
-  folder: z.enum(['reports', 'exports']),
+  folder: z.enum(['reports', 'downloads']),
   fileName: z.string().min(1),
-  columns: z.array(z.string()).min(1),
-  rows: z.array(z.array(z.string())).min(1),
+  contentType: z.string(),
+  contentStream: z.instanceof(Readable),
 })
 
 type ExportCSVParams = z.input<typeof exportCSVParamsSchema>
 
-function escapeCSVValue(value: string): string {
-  // Se o valor tiver ;, ", ou quebra de linha, envolve em aspas duplas e escapa as aspas
-  if (value.includes(';') || value.includes('"') || value.includes('\n')) {
-    return `"${value.replace(/"/g, '""')}"`
-  }
-  return value
-}
+export async function exportToCSVAndlinks(input: ExportCSVParams) {
+  const { folder, fileName, contentType, contentStream } =
+    exportCSVParamsSchema.parse(input)
 
-function createCSVStream(columns: string[], rows: string[][]): Readable {
-  const delimiter = ';' // Excel PT-BR espera ponto e vírgula
+  const fileExtension = extname(fileName)
+  const fileNameWithoutExtension = basename(fileName)
+  const sanitizedFileName = fileNameWithoutExtension.replace(
+    /[^a-zA-Z0-9]/g,
+    ''
+  )
+  const sanitizedFileNameWithExtension = sanitizedFileName.concat(fileExtension)
 
-  const header = columns.map(escapeCSVValue).join(delimiter)
-  const dataRows = rows.map(row => row.map(escapeCSVValue).join(delimiter))
-
-  const allLines = [header, ...dataRows].join('\r\n')
-
-  // Adiciona BOM no início do conteúdo para o Excel reconhecer UTF-8 corretamente
-  const csvContent = `\uFEFF${allLines}`
-
-  return Readable.from([csvContent])
-}
-
-export async function exportToCSVAndUpload(input: ExportCSVParams) {
-  const { folder, fileName, columns, rows } = exportCSVParamsSchema.parse(input)
-
-  const csvStream = createCSVStream(columns, rows)
-
-  const uniqueFileName = `${folder}/${randomUUID()}-${fileName}.csv`
+  const uniqueFileName = `${folder}/${randomUUID()}-${sanitizedFileNameWithExtension}`
 
   const upload = new Upload({
     client: r2,
     params: {
-      Bucket: env.CLOUDFLARE_BUCKET,
       Key: uniqueFileName,
-      Body: csvStream,
-      ContentType: 'text/csv',
+      Bucket: env.CLOUDFLARE_BUCKET,
+      Body: contentStream,
+      ContentType: contentType,
     },
   })
 

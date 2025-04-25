@@ -16,6 +16,7 @@ import { fastifySwagger } from '@fastify/swagger'
 import { fastifySwaggerUi } from '@fastify/swagger-ui'
 import { generateReport } from './routes/generate-report'
 import { listLinks } from './routes/list-links'
+import { deleteLinks } from './routes/delete-links'
 
 const server = fastify()
 
@@ -51,6 +52,7 @@ server.register(fastifySwaggerUi, {
 
 server.register(createLinks)
 server.register(listLinks)
+//server.register(deleteLinks)
 server.register(generateReport)
 
 server.listen({ port:3333, host: '0.0.0.0' }).then(() => {
