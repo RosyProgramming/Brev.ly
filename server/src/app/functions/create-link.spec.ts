@@ -9,8 +9,8 @@ import { ShortURlAlreadyExists } from './errors/shortUrl-already-exists'
 import { createLinkInput } from './create-link'
 
 describe('createLink', () => {
-  it('deve criar um link com sucesso', async () => {
-    const shortUrl = `slug-${uuidv7()}`
+  it('should create a link successfully', async () => {
+    const shortUrl = `abc-${uuidv7()}`
     const originalUrl = `https://meusite.com/${shortUrl}`
 
     const result = await createLink({
@@ -31,7 +31,7 @@ describe('createLink', () => {
     expect(linkInDb?.originalUrl).toBe(originalUrl)
   })
 
-  it('não deve permitir shortUrl duplicado', async () => {
+  it('should not allow duplicate shortUrl', async () => {
     const shortUrl = `duplicado-${uuidv7()}`
     const originalUrl = `https://original.com/${shortUrl}`
 
@@ -47,7 +47,7 @@ describe('createLink', () => {
     expect(result.left).toBeInstanceOf(ShortURlAlreadyExists)
   })
 
-  it('deve falhar com originalUrl inválido', async () => {
+  it('should fail with invalid originalUr', async () => {
     const invalidData = {
       originalUrl: 'sem-protocolo', // inválida
       shortUrl: `test-${uuidv7()}`,
@@ -56,7 +56,7 @@ describe('createLink', () => {
     expect(() => createLinkInput.parse(invalidData)).toThrowError()
   })
 
-  it('deve falhar com shortUrl muito curta', async () => {
+  it('should fail with shortUrl too short', async () => {
     const invalidData = {
       originalUrl: 'https://site.com',
       shortUrl: 'a', // muito curta
@@ -65,10 +65,10 @@ describe('createLink', () => {
     expect(() => createLinkInput.parse(invalidData)).toThrowError()
   })
 
-  it('deve falhar com shortUrl em formato inválido', async () => {
+  it('should fail with shortUrl in invalid format', async () => {
     const invalidData = {
       originalUrl: 'https://site.com',
-      shortUrl: 'slug!@#$', // caracteres inválidos
+      shortUrl: 'short!@#$', // caracteres inválidos
     }
 
     expect(() => createLinkInput.parse(invalidData)).toThrowError()
