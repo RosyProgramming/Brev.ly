@@ -79,13 +79,11 @@ export async function generateLinksReport(
   const linksToStorage = exportToCSVAndlinks({
     contentType: 'text/csv',
     folder: 'downloads',
-    fileName: `${new Date().toISOString()}-linkss.csv`,
+    fileName: `${new Date().toISOString()}-links.csv`,
     contentStream: linksToStorageStream,
   })
 
   const [{ url }] = await Promise.all([linksToStorage, convertToCSVPipeline])
 
-
   return makeRight({ reportUrl: url })
-
 }

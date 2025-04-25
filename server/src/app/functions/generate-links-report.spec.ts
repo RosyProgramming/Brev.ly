@@ -53,13 +53,43 @@ describe('export links', () => {
 
     expect(isRight(sut)).toBe(true)
     expect(unwrapEither(sut).reportUrl).toBe('http://example.com/file.csv')
-   expect(csvAsArray).toEqual([
-      ['ID','OriginalUrl','ShortUrl','AccessCount','Created At'],
-      [link1.id, link1.originalUrl, link1.shortUrl, link1.accessCount, expect.any(String)],
-      [link2.id, link2.originalUrl, link2.shortUrl, link2.accessCount, expect.any(String)],
-      [link3.id, link3.originalUrl, link3.shortUrl, link3.accessCount, expect.any(String)],
-      [link4.id, link4.originalUrl, link4.shortUrl, link4.accessCount, expect.any(String)],
-      [link5.id, link5.originalUrl, link5.shortUrl, link5.accessCount, expect.any(String)],
+    expect(csvAsArray).toEqual([
+      ['ID', 'OriginalUrl', 'ShortUrl', 'AccessCount', 'Created At'],
+      [
+        link1.id,
+        link1.originalUrl,
+        link1.shortUrl,
+        link1.accessCount,
+        expect.any(String),
+      ],
+      [
+        link2.id,
+        link2.originalUrl,
+        link2.shortUrl,
+        link2.accessCount,
+        expect.any(String),
+      ],
+      [
+        link3.id,
+        link3.originalUrl,
+        link3.shortUrl,
+        link3.accessCount,
+        expect.any(String),
+      ],
+      [
+        link4.id,
+        link4.originalUrl,
+        link4.shortUrl,
+        link4.accessCount,
+        expect.any(String),
+      ],
+      [
+        link5.id,
+        link5.originalUrl,
+        link5.shortUrl,
+        link5.accessCount,
+        expect.any(String),
+      ],
     ])
   })
 })

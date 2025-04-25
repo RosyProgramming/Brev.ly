@@ -9,11 +9,15 @@ export const deleteLinkInput = z.object({
   id: z.string().uuid(),
 })
 
+type DeleteLinkOutput = {
+  idLink: string
+}
+
 type DeleteLinkInput = z.input<typeof deleteLinkInput>
 
 export async function deleteLink(
   input: DeleteLinkInput
-): Promise<Either<NotFoundError, { id: string }>> {
+): Promise<Either<NotFoundError, DeleteLinkOutput>> {
   const { id } = deleteLinkInput.parse(input)
 
   const linkExists = await db.query.links.findFirst({
@@ -29,5 +33,5 @@ export async function deleteLink(
     .where(eq(schema.links.id, id))
     .returning()
 
-  return makeRight({ id: deleted.id })
+  return makeRight({ idLink: deleted.id })
 }

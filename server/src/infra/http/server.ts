@@ -1,4 +1,3 @@
-import { env } from '@/env'
 import { fastify } from "fastify"
 import { fastifyCors } from "@fastify/cors"
 import { transformSwaggerSchema } from './transform-swagger-schema'
@@ -52,7 +51,7 @@ server.register(fastifySwaggerUi, {
 
 server.register(createLinks)
 server.register(listLinks)
-//server.register(deleteLinks)
+server.register(deleteLinks)
 server.register(generateReport)
 
 server.listen({ port:3333, host: '0.0.0.0' }).then(() => {

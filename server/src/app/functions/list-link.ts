@@ -15,15 +15,15 @@ export const listLinkInput = z.object({
 type ListLinkInput = z.input<typeof listLinkInput>
 
 type LinksOutput = {
-    links: {
-        id: string
-        originalUrl: string
-        shortUrl: string
-        accessCount: number
-        createdAt: Date
-    }[]
-    total: number
-  }
+  links: {
+    id: string
+    originalUrl: string
+    shortUrl: string
+    accessCount: number
+    createdAt: Date
+  }[]
+  total: number
+}
 
 export async function listLink(
   input: ListLinkInput
@@ -31,7 +31,7 @@ export async function listLink(
   const { page, pageSize, searchQuery, sortBy, sortDirection } =
     listLinkInput.parse(input)
 
-    const searchCondition = searchQuery
+  const searchCondition = searchQuery
     ? or(
         ilike(schema.links.originalUrl, `%${searchQuery}%`),
         ilike(schema.links.shortUrl, `%${searchQuery}%`)
@@ -66,7 +66,7 @@ export async function listLink(
     db
       .select({ total: count(schema.links.id) })
       .from(schema.links)
-      .where(searchCondition)
+      .where(searchCondition),
   ])
 
   return makeRight({ links, total })
