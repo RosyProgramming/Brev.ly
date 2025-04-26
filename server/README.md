@@ -28,5 +28,21 @@ Este projeto tem como objetivo oferecer um sistema completo de encurtamento de U
 
 ---
 
+## Docker
+
+- [x] Construção de um `Dockerfile` seguindo boas práticas
+- [x] Geração da imagem da aplicação via Docker
+
+---
+
+## 🛠️ Dicas Importantes
+
+- ✅ Lembre-se de habilitar o **CORS** na aplicação.
+---
+
+## 📂 Exemplo de CSV
+https://pub-f777ab9ac6c54f97bef8cc8cbba1fc69.r2.dev/downloads/19618a1a-95eb-4cd3-a137-a720405eae60-20250425T172717933Zlinksscsv.csv
+
+
 ## 🚀 Pronto para uso!
 Todas as funcionalidades descritas acima já estão 100% implementadas ✅
