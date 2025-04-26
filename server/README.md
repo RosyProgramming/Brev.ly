@@ -28,9 +28,5 @@ Este projeto tem como objetivo oferecer um sistema completo de encurtamento de U
 
 ---
 
-## 📂 Exemplo de Estrutura CSV
-
----
-
 ## 🚀 Pronto para uso!
 Todas as funcionalidades descritas acima já estão 100% implementadas ✅
