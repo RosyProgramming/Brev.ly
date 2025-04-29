@@ -29,7 +29,7 @@ Assim como na API, temos as seguintes funcionalidades e regras:
 
 ## 🛠️ Regras Específicas para o Frontend
 
-- [ ] Aplicação React no formato SPA utilizando o Vite como bundler
+- [x] Aplicação React no formato SPA utilizando o Vite como bundler
 - [ ] Interface seguindo fielmente o layout disponibilizado no Figma
 - [ ] Experiência do usuário aprimorada:
   - [ ] Empty states amigáveis

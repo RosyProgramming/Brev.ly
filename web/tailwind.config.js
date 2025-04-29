@@ -8,6 +8,10 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        'blue-base': '#2C46B1',
+        'blue-dark':'#2C4091',
+      },
       fontFamily: {
         sans: ['Open Sans', theme.fontFamily.sans]
       }

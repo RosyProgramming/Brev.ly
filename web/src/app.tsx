@@ -1,7 +1,10 @@
+import { NewLink } from "./components/new-link";
 
 export function App() {
   return (
-    <h1>Hello word</h1>
+   <main className="h-dvh flex flex-col p-10">
+      <NewLink />
+    </main>
   )
 }
 
