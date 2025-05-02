@@ -22,12 +22,12 @@ export function Button({
   const sizeStyles = {
     small: 'h-8 w-8',
     medium: 'h-8 w-[100px]',
-    large: 'h-12 w-[79px]',
+    large: 'h-12',
   };
 
   const stateStyles = disabled ? "opacity-50 cursor-not-allowed" : "";
 
-  const primaryStyles = "bg-blue-base hover:bg-blue-dark text-white px-5 gap-3 sm:w-80 h-12 rounded-lg";
+  const primaryStyles = "w-full sm:w-80 h-12 bg-blue-base hover:bg-blue-dark text-white px-5 gap-3 rounded-lg";
   const secondaryStyles = "bg-gray-200 text-gray-500 border border-transparent hover:border-blue-base rounded-[4px] px-2 gap-1 h-[32px] text-[12px] font-semibold leading-4";
 
   const variantStyles = variant === "primary" ? primaryStyles : secondaryStyles;
