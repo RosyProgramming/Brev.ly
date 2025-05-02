@@ -20,21 +20,21 @@ export function Button({
   className,
   ...props
 }: ButtonProps) {
-  const base = " flex flex-row justify-center items-center ";
+  const base = "flex flex-row justify-center items-center transition-all duration-300";
 
   const sizeStyles = {
     small: 'h-8 w-8',
     medium: 'h-8 w-[100px]',
-    large: 'h-12 w-79',
+    large: 'h-12 w-[79px]',
   };
-  
 
-  const opacityStyles = isLoading || disabled
+  // Quando estiver desabilitado ou carregando, aplica opacidade e remove interação
+  const stateStyles = (isLoading || disabled)
     ? "opacity-50 cursor-not-allowed"
-    : "opacity-100 hover:opacity-80";
+    : "";
 
-  const primaryStyles = "bg-blue-base px-5 gap-3 sm:w-80 h-12 rounded-lg transition-opacity duration-300 order-2 self-stretch";
-  const secondaryStyles = "px-2 gap-1 mx-auto bg-gray-200 border border-transparent hover:border-blue-base text-black";
+  const primaryStyles = "bg-blue-base hover:bg-blue-dark text-white px-5 gap-3 sm:w-80 h-12 rounded-lg";
+  const secondaryStyles = "bg-gray-200 text-gray-500 border border-transparent hover:border-blue-base rounded-[4px] px-2 gap-1 h-[32px] text-[12px] font-semibold leading-4";
 
   const variantStyles = variant === "primary" ? primaryStyles : secondaryStyles;
 
@@ -43,7 +43,7 @@ export function Button({
       type="button"
       disabled={isLoading || disabled}
       onClick={onClick}
-      className={`${base} ${sizeStyles[size]} ${variantStyles} ${opacityStyles} ${className ?? ""}`}
+      className={`${base} ${sizeStyles[size]} ${variantStyles} ${stateStyles} ${className ?? ""}`}
       {...props}
     >
       {isLoading ? (
@@ -54,8 +54,7 @@ export function Button({
       ) : (
         <>
           {icon && <span>{icon}</span>}
-          <span 
-            className={variant === "secondary" 
+          <span  className={variant === "secondary" 
               ? " w-[62px] text-[12px] font-semibold text-gray-500 leading-4 "
               : "text-white text-md"}
           >{label}</span>
