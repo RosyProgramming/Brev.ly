@@ -11,8 +11,8 @@ import axios from "axios";
 
 // Schema com validações
 const formSchema = z.object({
-  originalUrl: z.string().min(1, "Informe a URL").url("URL inválida"),
-  shortUrl: z.string().min(1, "Informe um link encurtado"),
+  originalUrl: z.string().min(1, "Informe uma url válida.").url("URL inválida"),
+  shortUrl: z.string().min(1, "Informe uma url minúscula e sem espaço/caracter especial."),
 });
 
 type FormData = z.infer<typeof formSchema>;
