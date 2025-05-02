@@ -20,20 +20,21 @@ export function Button({
   className,
   ...props
 }: ButtonProps) {
-  const base = "flex flex-row justify-center items-center text-md px-5 gap-3 sm:w-80 h-12 rounded-lg transition-opacity duration-300 order-2 self-stretch";
+  const base = " flex flex-row justify-center items-center ";
 
   const sizeStyles = {
     small: 'h-8 w-8',
-    medium: 'h-8 w-32 font-semibold text-[12px]',
-    large: 'h-12 w-79 text-md',
+    medium: 'h-8 w-[100px]',
+    large: 'h-12 w-79',
   };
+  
 
   const opacityStyles = isLoading || disabled
     ? "opacity-50 cursor-not-allowed"
     : "opacity-100 hover:opacity-80";
 
-  const primaryStyles = "bg-blue-base text-white";
-  const secondaryStyles = "bg-gray-200 border border-transparent hover:border-blue-base text-black";
+  const primaryStyles = "bg-blue-base px-5 gap-3 sm:w-80 h-12 rounded-lg transition-opacity duration-300 order-2 self-stretch";
+  const secondaryStyles = "px-2 gap-1 mx-auto bg-gray-200 border border-transparent hover:border-blue-base text-black";
 
   const variantStyles = variant === "primary" ? primaryStyles : secondaryStyles;
 
@@ -53,7 +54,11 @@ export function Button({
       ) : (
         <>
           {icon && <span>{icon}</span>}
-          <span>{label}</span>
+          <span 
+            className={variant === "secondary" 
+              ? " w-[62px] text-[12px] font-semibold text-gray-500 leading-4 "
+              : "text-white text-md"}
+          >{label}</span>
         </>
       )}
     </button>
