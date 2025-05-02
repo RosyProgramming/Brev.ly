@@ -3,11 +3,40 @@ import { Button } from "./button";
 import { Header } from "./header";
 import { useState } from 'react';
 import { useUrls } from '../store/urls';
+import { api } from "../shared/api-fetch";
+import { toast } from 'react-toastify';
 
 export function MyLink() {
     const [isLoading, setIsLoading] = useState(false);
     const { urls } = useUrls();
     const hasData = urls.size > 0;
+
+    async function exportToCSVAndlinks() {
+
+        setIsLoading(true)
+
+        try{
+
+            const response = await api.get('/link/report');
+
+            if(response.status === 200){
+                const link = document.createElement('a');
+                link.href = response.data.reportUrl;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                toast("CSV exportado com sucesso!", { type: "success" });
+            } else {
+                toast("Erro ao gerar o CSV", { type: "error" });
+            }
+
+        }catch(error){
+            toast("Erro ao exportar CSV", { type: "error" });
+        }
+
+        setIsLoading(false);
+    }
 
 
     return (
@@ -20,7 +49,7 @@ export function MyLink() {
                     label="Baixar CSV"
                     icon={<DownloadSimple size={16} className="text-gray-600" />}
                     disabled={!hasData || isLoading}
-                    
+                    onClick={exportToCSVAndlinks}
                 /> 
             </div>
 

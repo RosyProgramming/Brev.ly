@@ -23,7 +23,7 @@ Assim como na API, temos as seguintes funcionalidades e regras:
 - [ ] Incrementar automaticamente a contagem de acessos ao visitar um link
 
 ### 📤 Exportação em CSV
-- [ ] Baixar um relatório dos links criados em arquivo CSV
+- [x] Baixar um relatório dos links criados em arquivo CSV
 
 ---
 
@@ -31,10 +31,10 @@ Assim como na API, temos as seguintes funcionalidades e regras:
 
 - [x] Aplicação React no formato SPA utilizando o Vite como bundler
 - [x] Interface seguindo fielmente o layout disponibilizado no Figma
-- [ ] Experiência do usuário aprimorada:
-  - [ ] Empty states amigáveis
-  - [ ] Ícones de carregamento
-  - [ ] Bloqueio de ações durante operações assíncronas
+- [x] Experiência do usuário aprimorada:
+  - [x] Empty states amigáveis
+  - [x] Ícones de carregamento
+  - [x] Bloqueio de ações durante operações assíncronas
 - [x] Responsividade completa para desktops e celulares
 
 ---

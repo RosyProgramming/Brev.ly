@@ -34,10 +34,10 @@ export async function generateLinksReport(
   const { sql, params } = db
     .select({
       id: schema.links.id,
-      originalUrl: schema.links.originalUrl,
-      shortUrl: schema.links.shortUrl,
-      accessCount: schema.links.accessCount,
-      createdAt: schema.links.createdAt,
+      original_url: schema.links.originalUrl,
+      short_url: schema.links.shortUrl,
+      access_count: schema.links.accessCount,
+      created_at: schema.links.createdAt,
     })
     .from(schema.links)
     .where(searchCondition)
