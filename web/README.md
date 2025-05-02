@@ -10,9 +10,9 @@ Este projeto é o frontend do sistema de encurtamento de URLs, desenvolvido em R
 Assim como na API, temos as seguintes funcionalidades e regras:
 
 ### 📌 Criação de Links
-- [ ] Criar um novo link encurtado
-  - [ ] Validação de formato da URL encurtada
-  - [ ] Prevenção de duplicidade de URLs encurtadas
+- [x] Criar um novo link encurtado
+  - [x] Validação de formato da URL encurtada
+  - [X] Prevenção de duplicidade de URLs encurtadas
 
 ### ❌ Exclusão de Links
 - [ ] Deletar um link existente
@@ -30,12 +30,12 @@ Assim como na API, temos as seguintes funcionalidades e regras:
 ## 🛠️ Regras Específicas para o Frontend
 
 - [x] Aplicação React no formato SPA utilizando o Vite como bundler
-- [ ] Interface seguindo fielmente o layout disponibilizado no Figma
+- [x] Interface seguindo fielmente o layout disponibilizado no Figma
 - [ ] Experiência do usuário aprimorada:
   - [ ] Empty states amigáveis
   - [ ] Ícones de carregamento
   - [ ] Bloqueio de ações durante operações assíncronas
-- [ ] Responsividade completa para desktops e celulares
+- [x] Responsividade completa para desktops e celulares
 
 ---
 

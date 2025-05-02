@@ -11,6 +11,7 @@ export default {
       colors: {
         'blue-base': '#2C46B1',
         'blue-dark':'#2C4091',
+        'danger':'#B12C4D',
       },
       fontFamily: {
         sans: ['Open Sans', theme.fontFamily.sans]

@@ -1,12 +1,11 @@
-import Logo from '@/assets/Logo.svg'
+interface HeaderProps {
+	title: string;
+}
 
-export function Header() {
+export function Header({ title }: HeaderProps) {
   return (
-    <header className="absolute top-20">
-      <a href="/" className="flex items-center">
-        <span className="sr-only">Brev.ly logo</span>
-        <img src={Logo} alt="Brev.ly logo" className="w-24 h-6" />
-      </a>
-    </header>
+    <div className="w-full">
+			<h1 className="text-gray-600 font-bold text-lg leading-6">{title}</h1>
+		</div>
   )
 }
