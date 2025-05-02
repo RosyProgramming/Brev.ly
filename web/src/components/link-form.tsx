@@ -93,7 +93,6 @@ export function LinkForm() {
           variant="primary"
           size="large"
           label="Salvar link"
-          isLoading={isSubmitting}
           disabled={isSubmitting}
         />
       </form>

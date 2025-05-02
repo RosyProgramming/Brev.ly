@@ -1,12 +1,10 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
-import { SpinnerGap } from "@phosphor-icons/react";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'primary' | 'secondary';
   size?: 'small' | 'medium' | 'large';
   label: string;
   icon?: ReactNode;
-  isLoading?: boolean;
 };
 
 export function Button({
@@ -14,7 +12,6 @@ export function Button({
   size = "medium",
   label,
   icon,
-  isLoading = false,
   disabled = false,
   onClick,
   className,
@@ -28,10 +25,7 @@ export function Button({
     large: 'h-12 w-[79px]',
   };
 
-  // Quando estiver desabilitado ou carregando, aplica opacidade e remove interação
-  const stateStyles = (isLoading || disabled)
-    ? "opacity-50 cursor-not-allowed"
-    : "";
+  const stateStyles = disabled ? "opacity-50 cursor-not-allowed" : "";
 
   const primaryStyles = "bg-blue-base hover:bg-blue-dark text-white px-5 gap-3 sm:w-80 h-12 rounded-lg";
   const secondaryStyles = "bg-gray-200 text-gray-500 border border-transparent hover:border-blue-base rounded-[4px] px-2 gap-1 h-[32px] text-[12px] font-semibold leading-4";
@@ -41,25 +35,21 @@ export function Button({
   return (
     <button
       type="button"
-      disabled={isLoading || disabled}
+      disabled={disabled}
       onClick={onClick}
       className={`${base} ${sizeStyles[size]} ${variantStyles} ${stateStyles} ${className ?? ""}`}
       {...props}
     >
-      {isLoading ? (
-        <span className="flex items-center gap-2 text-md">
-          <SpinnerGap size={20} className="animate-spin" />
-          Salvando...
-        </span>
-      ) : (
-        <>
-          {icon && <span>{icon}</span>}
-          <span  className={variant === "secondary" 
-              ? " w-[62px] text-[12px] font-semibold text-gray-500 leading-4 "
-              : "text-white text-md"}
-          >{label}</span>
-        </>
-      )}
+      {icon && <span>{icon}</span>}
+      <span
+        className={
+          variant === "secondary"
+            ? "w-[62px] text-[12px] font-semibold text-gray-500 leading-4"
+            : "text-white text-md"
+        }
+      >
+        {label}
+      </span>
     </button>
   );
 }
