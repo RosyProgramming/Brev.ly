@@ -1,4 +1,3 @@
-//import { Header } from "./header";
 import { LinkForm } from "./link-form";
 
 export function NewLink() {

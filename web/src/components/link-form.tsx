@@ -3,9 +3,9 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import { api } from "../shared/api-fetch";
-import { Input } from "./input";
-import { Button } from "./button";
-import { Header } from "./header";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import { Header } from "./ui/header";
 import { useUrls } from "../store/urls";
 import axios from "axios";
 

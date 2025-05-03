@@ -1,10 +1,11 @@
 import { DownloadSimple } from '@phosphor-icons/react';
-import { Button } from "./button";
-import { Header } from "./header";
+import { Button } from "./ui/button";
+import { Header } from "./ui/header";
 import { useState } from 'react';
 import { useUrls } from '../store/urls';
 import { api } from "../shared/api-fetch";
 import { toast } from 'react-toastify';
+import { ListLink } from './list-links';
 
 export function MyLink() {
     const [isLoading, setIsLoading] = useState(false);
@@ -40,8 +41,8 @@ export function MyLink() {
 
 
     return (
-        <div className=" flex flex-col gap-5 max-w-[366px] md:max-w-[580px] w-full ">
-            <div className="flex flex-row p-8 md:p-6 gap-4 top-32 bg-gray-100 rounded-lg">
+        <div className=" flex flex-col gap-5 p-8  w-full md:max-w-[580px] bg-gray-100 rounded-lg top-36">
+            <div className="flex flex-row  justify-between gap-2 p-0 top-32 flex-none order self-stretch flex-grow-0">
                 <Header title="Meus Links" />
                 <Button 
                     variant="secondary"
@@ -52,7 +53,7 @@ export function MyLink() {
                     onClick={exportToCSVAndlinks}
                 /> 
             </div>
-
+            <ListLink />
         </div>
       );
 }
