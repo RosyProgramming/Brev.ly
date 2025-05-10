@@ -2,15 +2,15 @@ import { DownloadSimple } from '@phosphor-icons/react';
 import { Button } from "./ui/button";
 import { Header } from "./ui/header";
 import { useState } from 'react';
-import { useUrls } from '../store/urls';
+import { useLinks } from '../store/links';
 import { api } from "../shared/api-fetch";
 import { toast } from 'react-toastify';
 import { ListLink } from './list-links';
 
 export function MyLink() {
     const [isLoading, setIsLoading] = useState(false);
-    const { urls } = useUrls();
-    const hasData = urls.size > 0;
+    const { links } = useLinks();
+    const hasData = links.size > 0;
 
     async function exportToCSVAndlinks() {
 

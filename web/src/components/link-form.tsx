@@ -6,7 +6,7 @@ import { api } from "../shared/api-fetch";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Header } from "./ui/header";
-import { useUrls } from "../store/urls";
+import { useLinks } from "../store/links";
 import axios from "axios";
 
 // Schema com validações
@@ -18,7 +18,7 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 export function LinkForm() {
-  const { addUrl } = useUrls();
+  const { addLink } = useLinks();
 
   const {
     register,
@@ -44,7 +44,7 @@ export function LinkForm() {
         const savedUrl = await api.get(`/link/${response.data.link.shortUrl}`);
 
         if (savedUrl.data) {
-          addUrl({
+          addLink({
             id: response.data.link.id,
             ...response.data.link,
           });
