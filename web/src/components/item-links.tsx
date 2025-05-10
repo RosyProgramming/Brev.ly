@@ -29,18 +29,18 @@ export function ItemLinks({ item }: ItemLinksProps) {
     
     return (
         <div className="flex flex-row justify-between items-center py-[2px] gap-5 w-full border-t border-gray-200">
-            <div className="cursor-pointer flex flex-col gap-1 flex-none order-0 flex-grow w-[147px] md:w-[320px]">
-                <span 
-                    className="font-semibold text-sm leading-[18px] text-blue-base flex-none order-0 self-stretch grow-0 truncate"
-                    // biome-ignore lint/a11y/useSemanticElements: <explanation>
-                    role='button'
-                    tabIndex={0}
-                    onClick={handleUrlClick}
-                    onKeyDown={(e) => e.key === 'Enter' && handleUrlClick()}
-                >
+            <div className="flex flex-col gap-1 flex-none order-0 flex-grow w-[147px] md:w-[320px]">
+            <span
+                className=" cursor-pointer font-semibold text-sm leading-[18px] text-blue-base flex-none order-0 self-stretch grow-0 truncate"
+                // biome-ignore lint/a11y/useSemanticElements: <explanation>
+                role='button'
+                tabIndex={0}
+                onClick={handleUrlClick}
+                onKeyDown={(e) => e.key === 'Enter' && handleUrlClick()}
+            >
                     {item.shortUrl}
-                </span>
-                <span className="font-normal text-xs bg-red-100 text-gray-500 leading-4 flex-none order-1 self-stretch grow-0 truncate">{item.originalUrl}</span>
+            </span>
+                <span className="font-normal text-xs text-gray-500 leading-4 flex-none order-1 self-stretch grow-0 truncate">{item.originalUrl}</span>
             </div>
             <span className="w-[61px] h-4 text-[12px] leading-4 font-normal text-right text-gray-500 order-1 flex-none grow-0">{access}
             </span>
