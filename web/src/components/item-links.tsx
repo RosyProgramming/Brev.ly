@@ -24,7 +24,6 @@ export function ItemLinks({ item }: ItemLinksProps) {
 
     function deleteClickLink() {
         deletelink(item.id);
-        
     }
     
     return (

@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
-import { api } from "../shared/api-fetch";
+import { api } from "../http/api-fetch";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Header } from "./ui/header";
