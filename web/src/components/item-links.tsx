@@ -22,9 +22,16 @@ export function ItemLinks({ item }: ItemLinksProps) {
         toast('Link copiado para a área de transferência', { type: 'info' });
     }
 
-    function deleteClickLink() {
-        deletelink(item.id);
+    async function deleteClickLink() {
+        try {
+            deletelink(item.id);
+            toast('Link deletado com sucesso', { type: 'success' });
+        } catch (error) {
+            toast('Erro ao deletar link', { type: 'error' });
+        }
     }
+
+    
     
     return (
         <div className="flex flex-row justify-between items-center py-[2px] gap-5 w-full border-t border-gray-200">
