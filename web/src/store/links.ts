@@ -17,6 +17,7 @@ type LinkState = {
 	deleteLink: (linkId: string) => void;
 	setLinks: (linksArray: Link[]) => void;
 	fetchLinks: () => Promise<void>;
+	isLoading: boolean;
 };
 
 enableMapSet();
@@ -53,16 +54,30 @@ export const useLinks = create<LinkState, [["zustand/immer", never]]>(
 
 		// Função para buscar links da API
 		async function fetchLinks() {
-			const response = await api.get("/link"); 
-			if (response.data.links && Array.isArray(response.data.links)) {
-				setLinks(response.data.links);
-			} else {
-				console.error("A resposta da API não contém uma lista de links.");
+			set((state) => {
+				state.isLoading = true;
+			});
+
+			try {
+				const response = await api.get("/link");
+				if (response.data.links && Array.isArray(response.data.links)) {
+					setLinks(response.data.links);
+				} else {
+					console.error("A resposta da API não contém uma lista de links.");
+				}
+			} catch (error) {
+					console.error("Erro ao buscar links:", error);
+			} finally {
+				set((state) => {
+					state.isLoading = false;
+				});
 			}
 		}
 
+
 		return {
-			links: new Map<string, Link>(), 
+			links: new Map<string, Link>(),
+			isLoading: false, 
 			addLink,
 			deleteLink,
 			setLinks,

@@ -15,7 +15,7 @@ export function ItemLinks({ item }: ItemLinksProps) {
     
     const handleUrlClick = () => {
         navigate(`/${item.shortUrl}`);
-      }
+    }
     
     const copyClickLink = async () => {
         await navigator.clipboard.writeText(item.shortUrl)

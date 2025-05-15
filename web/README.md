@@ -15,12 +15,12 @@ Assim como na API, temos as seguintes funcionalidades e regras:
   - [X] Prevenção de duplicidade de URLs encurtadas
 
 ### ❌ Exclusão de Links
-- [ ] Deletar um link existente
+- [x] Deletar um link existente
 
 ### 🔍 Consulta e Acesso
-- [ ] Obter a URL original através de uma URL encurtada
-- [ ] Listar todas as URLs cadastradas
-- [ ] Incrementar automaticamente a contagem de acessos ao visitar um link
+- [x] Obter a URL original através de uma URL encurtada
+- [x] Listar todas as URLs cadastradas
+- [x] Incrementar automaticamente a contagem de acessos ao visitar um link
 
 ### 📤 Exportação em CSV
 - [x] Baixar um relatório dos links criados em arquivo CSV
