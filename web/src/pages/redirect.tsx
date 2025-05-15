@@ -24,7 +24,6 @@ export function Redirect() {
     async function handleRedirect() {
       try {
         const response = await api.get(`/link/${shortUrl}`);
-        console.log(response)
         const { originalUrl } = response.data;
 
         if (originalUrl && isValidUrl(originalUrl)) {
