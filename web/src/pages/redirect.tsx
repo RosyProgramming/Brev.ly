@@ -53,14 +53,14 @@ export function Redirect() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <div className="flex flex-col items-center justify-center max-h-[296px] max-w-[580px] bg-gray-100 px-12 py-16 gap-6">
+      <div className="flex flex-col items-center justify-center max-h-[329px] max-w-[580px] bg-gray-100 px-12 py-16 gap-6 rounded-lg">
         <img src={logoIcon} alt="Logo Brev.lyv" className="w-12 h-12" />
-        <h1 className="text-xl text-gray-600">Redirecionando...</h1>
-        <p className="text-md text-gray-500 text-center">
+        <h1 className="text-2xl font-bold text-center text-gray-600 flex-none self-stretch flex-grow-0">Redirecionando...</h1>
+        <p className="text-sm font-semibold text-gray-500 text-center flex-none self-stretch flex-grow-0">
           O link será aberto automaticamente em alguns instantes.
           <br />
           Não foi redirecionado?&nbsp;
-          <a href={originalUrl ?? undefined} className="text-blue-500 hover:underline">
+          <a href={originalUrl ?? undefined} className="text-blue-base hover:underline">
             Acesse aqui
           </a>
         </p>
