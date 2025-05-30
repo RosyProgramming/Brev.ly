@@ -1,19 +1,21 @@
-import { tv } from 'tailwind-variants';
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { tv } from 'tailwind-variants'
+import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'primary' | 'secondary';
-  size?: 'small' | 'medium' | 'large';
-  label?: string;
-  icon?: ReactNode;
-};
+  variant?: 'primary' | 'secondary'
+  size?: 'small' | 'medium' | 'large'
+  label?: string
+  icon?: ReactNode
+}
 
 const button = tv({
   base: 'flex flex-row justify-center items-center transition-all duration-300',
   variants: {
     variant: {
-      primary: 'w-full sm:w-80 h-12 bg-blue-base hover:bg-blue-dark text-white px-5 gap-3 rounded-lg',
-      secondary: 'bg-gray-200 text-gray-500 border border-transparent hover:border-blue-base rounded-[4px] px-2 gap-1 h-[32px] text-[12px] font-semibold leading-4',
+      primary:
+        'w-full sm:w-80 h-12 bg-blue-base hover:bg-blue-dark text-white px-5 gap-3 rounded-lg',
+      secondary:
+        'bg-gray-200 text-gray-500 border border-transparent hover:border-blue-base rounded-[4px] px-2 gap-1 h-[32px] text-[12px] font-semibold leading-4',
     },
     size: {
       small: 'h-8 w-8',
@@ -29,7 +31,7 @@ const button = tv({
     variant: 'primary',
     size: 'medium',
   },
-});
+})
 
 export function Button({
   variant,
@@ -52,13 +54,13 @@ export function Button({
       {icon && <span>{icon}</span>}
       <span
         className={
-          variant === "secondary"
-            ? "w-[62px] text-[12px] font-semibold text-gray-500 leading-4"
-            : "text-white text-md"
+          variant === 'secondary'
+            ? 'w-[62px] text-[12px] font-semibold text-gray-500 leading-4'
+            : 'text-white text-md'
         }
       >
         {label}
       </span>
     </button>
-  );
+  )
 }

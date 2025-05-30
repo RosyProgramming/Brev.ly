@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom'
 // Cria a instância do cliente do React Query
 const queryClient = new QueryClient()
 
-const container = document.getElementById('root');
+const container = document.getElementById('root')
 
 if (container) {
   createRoot(container).render(
@@ -21,8 +21,7 @@ if (container) {
         </BrowserRouter>
       </QueryClientProvider>
     </StrictMode>,
-  );
+  )
 } else {
-  console.error("Elemento #root não encontrado no HTML.");
+  console.error('Elemento #root não encontrado no HTML.')
 }
-
