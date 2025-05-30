@@ -36,7 +36,6 @@ export function ItemLinks({ item }: ItemLinksProps) {
       <div className="flex flex-col gap-1 flex-none order-0 flex-grow w-[147px] md:w-[320px]">
         <span
           className=" cursor-pointer font-semibold text-sm leading-[18px] text-blue-base flex-none order-0 self-stretch grow-0 truncate"
-          // biome-ignore lint/a11y/useSemanticElements: <explanation>
           role="button"
           tabIndex={0}
           onClick={handleUrlClick}
