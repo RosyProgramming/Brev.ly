@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link as LinkIcon } from '@phosphor-icons/react'
+import { LinkIcon as LinkIcon } from '@phosphor-icons/react'
 import { Loader } from 'lucide-react'
 import { ItemLinks } from './item-links'
 import { useLinks } from '../store/links'

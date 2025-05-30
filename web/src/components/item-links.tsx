@@ -1,4 +1,4 @@
-import { Copy, Trash } from '@phosphor-icons/react'
+import { CopyIcon, TrashIcon } from '@phosphor-icons/react'
 import { Button } from './ui/button'
 import { useLinks, type Link } from '../store/links'
 import { toast } from 'react-toastify'
@@ -55,13 +55,13 @@ export function ItemLinks({ item }: ItemLinksProps) {
         <Button
           variant="secondary"
           size="small"
-          icon={<Copy size={16} className="text-gray-600" />}
+          icon={<CopyIcon size={16} className="text-gray-600" />}
           onClick={copyClickLink}
         />
         <Button
           variant="secondary"
           size="small"
-          icon={<Trash size={16} className="text-gray-600" />}
+          icon={<TrashIcon size={16} className="text-gray-600" />}
           onClick={deleteClickLink}
         />
       </div>
