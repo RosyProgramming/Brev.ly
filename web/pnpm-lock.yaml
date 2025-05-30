@@ -12,7 +12,7 @@ importers:
         specifier: ^5.0.1
         version: 5.0.1(react-hook-form@7.56.4(react@19.1.0))
       '@phosphor-icons/react':
-        specifier: ^2.1.7
+        specifier: ^2.1.10
         version: 2.1.10(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@tanstack/react-query':
         specifier: ^5.75.0
