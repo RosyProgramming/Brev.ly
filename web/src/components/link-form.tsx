@@ -91,7 +91,7 @@ export function LinkForm() {
         <Input
           label="link encurtado"
           type="text"
-          placeholder="brev.ly/"
+          prefix="brev.ly/" 
           {...register('shortUrl')}
           error={errors.shortUrl?.message}
         />

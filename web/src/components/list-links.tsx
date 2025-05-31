@@ -16,7 +16,7 @@ export function ListLink() {
   }, [fetchLinks])
 
   return (
-    <div className="flex flex-col w-full max-w-full gap-2 items-center md:max-h-[300px] overflow-y-auto overflow-x-hidden scrollbar-thin  scrollbar-thumb-blue-base scrollbar-hover:scrollbar-thumb-blue-dark scrollbar-track-transparent">
+    <div className="flex flex-col w-full items-start h-[280px] gap-4 overflow-y-auto overflow-x-hidden scrollbar-thin  scrollbar-thumb-blue-base scrollbar-hover:scrollbar-thumb-blue-dark scrollbar-track-transparent">
       {isLoading ? (
         <div className="w-full flex flex-col justify-center items-center pt-4 pb-6 gap-3 animate-pulse">
           <Loader className="w-5 h-5 text-gray-500 animate-spin" />

@@ -1,4 +1,4 @@
-import { DownloadSimple } from '@phosphor-icons/react'
+import { DownloadSimpleIcon } from '@phosphor-icons/react'
 import { Button } from './ui/button'
 import { Header } from './ui/header'
 import { useState } from 'react'
@@ -44,7 +44,7 @@ export function MyLink() {
           variant="secondary"
           size="medium"
           label="Baixar CSV"
-          icon={<DownloadSimple size={16} className="text-gray-600" />}
+          icon={<DownloadSimpleIcon size={16} className="text-gray-600" />}
           disabled={!hasData || isLoading}
           onClick={exportToCSVAndlinks}
         />

@@ -2,7 +2,6 @@ import { CopyIcon, TrashIcon } from '@phosphor-icons/react'
 import { Button } from './ui/button'
 import { useLinks, type Link } from '../store/links'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
 
 interface ItemLinksProps {
   item: Link
@@ -11,15 +10,15 @@ interface ItemLinksProps {
 export function ItemLinks({ item }: ItemLinksProps) {
   const access = `${item.accessCount} ${item.accessCount === 1 ? 'acesso' : 'acessos'}`
   const deletelink = useLinks((state) => state.deleteLink)
-  const navigate = useNavigate()
 
   const handleUrlClick = () => {
-    navigate(`/${item.shortUrl}`)
+    window.open(`/${item.shortUrl}`, '_blank')
   }
 
   const copyClickLink = async () => {
-    await navigator.clipboard.writeText(item.shortUrl)
-    toast('Link copiado para a área de transferência', { type: 'info' })
+    const fullUrl = `${import.meta.env.VITE_FRONTEND_URL}/${item.shortUrl}`;
+    await navigator.clipboard.writeText(fullUrl);
+    toast('Link copiado para a área de transferência', { type: 'info' });
   }
 
   async function deleteClickLink() {
@@ -41,7 +40,7 @@ export function ItemLinks({ item }: ItemLinksProps) {
           onClick={handleUrlClick}
           onKeyDown={(e) => e.key === 'Enter' && handleUrlClick()}
         >
-          {item.shortUrl}
+          {import.meta.env.VITE_FRONTEND_URL.replace(/^https?:\/\//, '')}/{item.shortUrl}
         </span>
         <span className="font-normal text-xs text-gray-500 leading-4 flex-none order-1 self-stretch grow-0 truncate">
           {item.originalUrl}
