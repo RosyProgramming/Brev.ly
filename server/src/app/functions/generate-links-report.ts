@@ -5,12 +5,13 @@ import { schema } from '@/infra/db/schemas'
 import { type Either, makeRight } from '@/infra/shared/either'
 import { exportToCSVAndlinks } from '@/infra/storage/export-csv-upload'
 import { stringify } from 'csv-stringify'
-import { asc, or } from 'drizzle-orm'
-import { ilike } from 'drizzle-orm'
+import { asc, or, ilike } from 'drizzle-orm'
 import { z } from 'zod'
 
 export const exportLinkInput = z.object({
   searchQuery: z.string().optional(),
+  page: z.number().optional().default(1),
+  pageSize: z.number().optional().default(100),
 })
 
 type ExportLinksOutput = {
@@ -22,7 +23,7 @@ type ExportLinksInput = z.infer<typeof exportLinkInput>
 export async function generateLinksReport(
   input: ExportLinksInput
 ): Promise<Either<never, ExportLinksOutput>> {
-  const { searchQuery } = exportLinkInput.parse(input)
+  const { searchQuery, page, pageSize } = exportLinkInput.parse(input)
 
   const searchCondition = searchQuery
     ? or(
@@ -30,6 +31,8 @@ export async function generateLinksReport(
         ilike(schema.links.shortUrl, `%${searchQuery}%`)
       )
     : undefined
+
+  const offset = (page - 1) * pageSize
 
   const { sql, params } = db
     .select({
@@ -42,9 +45,11 @@ export async function generateLinksReport(
     .from(schema.links)
     .where(searchCondition)
     .orderBy(asc(schema.links.createdAt))
+    .offset(offset)
+    .limit(pageSize)
     .toSQL()
 
-  const cursor = pg.unsafe(sql, params as string[]).cursor(2)
+  const cursor = pg.unsafe(sql, params as string[]).cursor(pageSize)
 
   const csv = stringify({
     delimiter: ',',
@@ -68,7 +73,6 @@ export async function generateLinksReport(
         for (const chunk of chunks) {
           this.push(chunk)
         }
-
         callback()
       },
     }),

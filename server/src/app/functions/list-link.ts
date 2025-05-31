@@ -9,7 +9,7 @@ export const listLinkInput = z.object({
   sortBy: z.enum(['createdAt']).optional(),
   sortDirection: z.enum(['asc', 'desc']).optional(),
   page: z.number().optional().default(1),
-  pageSize: z.number().optional().default(20),
+  pageSize: z.number().optional().default(100),
 })
 
 type ListLinkInput = z.input<typeof listLinkInput>
